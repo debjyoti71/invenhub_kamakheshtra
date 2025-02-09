@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="shortcut icon" type="x-icon" href="static/images/New_Template-Photoroom__2_-removebg-preview.png">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reports</title>
+    <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/dashboard.css">
+</head>
+
+<body>
+    <style>
+        .card{
+            box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+            border-radius: 8px;
+            background-color: #f2f8fd;
+            overflow: hidden;
+        }
+        
+        .graph-container {
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+
+        .stock-table {
+            font-size: 0.9rem;
+        }
+
+        .chart-wrapper {
+            position: relative;
+            margin: auto;
+            height: 300px;
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                height: auto;
+                border-right: none;
+                border-bottom: 1px solid #dee2e6;
+            }
+        }
+        .btn-21,
+.btn-21 *,
+.btn-21 :after,
+.btn-21 :before,
+.btn-21:after,
+.btn-21:before {
+  border: 0 solid;
+  box-sizing: border-box;
+}
+.btn-21 {
+  -webkit-tap-highlight-color: 
+transparent;
+  -webkit-appearance: button;
+  background-color: 
+#000;
+  background-image: none;
+  color: 
+#fff;
+  cursor: pointer;
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+    Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif,
+    Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+  font-size: 100%;
+  font-weight: 900;
+  line-height: 1.5;
+  margin: 0;
+  -webkit-mask-image: -webkit-radial-gradient(#000, #fff);
+  padding: 0;
+  text-transform: uppercase;
+}
+.btn-21:disabled {
+  cursor: default;
+}
+.btn-21:-moz-focusring {
+  outline: auto;
+}
+.btn-21 svg {
+  display: block;
+  vertical-align: middle;
+}
+.btn-21 [hidden] {
+  display: none;
+}
+.btn-21 {
+  border-radius: 99rem;
+  border-width: 2px;
+  overflow: hidden;
+  padding: 0.8rem 3rem;
+  position: relative;
+}
+.btn-21 span {
+  mix-blend-mode: difference;
+}
+.btn-21:before {
+  -webkit-animation: move-out 0.3s;
+  animation: move-out 0.3s;
+  background: 
+#fff;
+  content: "";
+  height: 100%;
+  left: -100%;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  will-change: transform;
+}
+.btn-21:hover:before {
+  -webkit-animation: move-in 0.3s forwards;
+  animation: move-in 0.3s forwards;
+}
+@-webkit-keyframes move-in {
+  0% {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(100%);
+  }
+}
+@keyframes move-in {
+  0% {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(100%);
+  }
+}
+@-webkit-keyframes move-out {
+  0% {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(200%);
+  }
+}
+@keyframes move-out {
+  0% {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(200%);
+  }
+}
+    </style>
+    <div class="wrapper">
+        <aside id="sidebar">
+            <div class="d-flex">
+                <button class="toggle-btn" type="button">
+                    <i class="lni lni-grid-alt"></i>
+                </button>
+                <div class="sidebar-logo">
+                    <a href="#">InvenHub</a>
+                </div>
+            </div>
+            <ul class="sidebar-nav">
+                <li class="sidebar-item">
+                    <a href="/dashboard" class="sidebar-link">
+                        <i><img height="25px" width="25px" src="/static/images/icons8-home (2).svg" alt=""></i>
+                        <span style="margin-left: 20px;">Dashboard</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a href="/inventory" class="sidebar-link">
+                        <i><img height="25px" width="25px" src="/static/images/icons8-inventory-50.png" alt="warehouse-1"/></i>
+                        <span style="margin-left: 20px;">Inventory</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a href="#" class="sidebar-link">
+                        <i><img height="25px" width="25px" src="/static/images/icons8-graph-48.png" alt="warehouse-1"/></i>
+                        <span style="margin-left: 20px;">Reports</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a href="/transactions" class="sidebar-link">
+                        <i><img height="25px" width="25px" src="/static/images/icons8-order-50.png" alt="warehouse-1"/></i>
+                        <span style="margin-left: 20px;">Transactions</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a href="/new_sale" class="sidebar-link">
+                        <i><img height="25px" width="25px" src="/static/images/icons8-plus.svg" alt="warehouse-1"/></i>
+                        <span style="margin-left: 20px;">New Sale</span>
+                    </a>
+                </li>
+            </ul>
+            <div class="sidebar-footer">
+                <a href="/settings" class="sidebar-link">
+                    <i><img height="25px" width="25px" src="/static/images/icons8-settings.svg" alt="warehouse-1"/></i>
+                    <span style="margin-left: 20px;">Settings</span>
+                </a>
+            </div>
+            <div class="sidebar-footer">
+                <a href="{{ url_for('logout') }}" class="sidebar-link">
+                    <i><img height="25px" width="25px" src="/static/images/icons8-logout-50 (1).png" alt="warehouse-1"/></i>
+                    <span style="margin-left: 20px;">Logout</span>
+                </a>
+            </div>
+        </aside>
+        <div class="main" id="bg">
+            <div class="row justify-content-center align-items-center" style="height: 8vh; background-color: #c2ddf5;">
+                <div class="col-10">
+                    <div class="row justify-content-center align-items-center">
+                        <div class="col"></div>
+                        <div class="col-5" style="height: auto;">
+                            <input class="form-control" type="search" placeholder="Search" aria-label="Search">
+                        </div>
+                        <div class="col-1"><button class="btn" id="btnn" type="submit">Search</button></div>
+                        <div class="col-5">
+                            <div class="row">
+                                <div class="col"></div>
+                                <div class="col-6" id="clock" style="height: 100%;"></div>
+                                <div class="col"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col d-flex justify-content-center align-items-center" style="height: auto;">
+                    <div class="row">
+                        <div class="col">
+                            <div class="dropdown dropleft">
+                                <a class="notification-icon position-relative" id="notificationDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i><img height="30px" width="28px" src="/static/images/icons8-notification (3).svg" alt=""></i>
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="notificationDropdown">
+                                    <li class="dropdown-header">Notifications</li>
+                                    <li><a class="dropdown-item" href="#">New message received</a></li>
+                                    <li><a class="dropdown-item" href="#">Server alert</a></li>
+                                    <li><a class="dropdown-item" href="#">Update available</a></li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li><a class="dropdown-item text-center" href="#">View all</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <!-- {% if user.profile_picture %} -->
+                                <!-- <a href="/account"><img height="30px" width="30px" src="{{ url_for('profile_picture', user_id=user.id) }}" alt="" id="acc"></a> -->
+                            <!-- {% else %} -->
+                                <a href="/account"><img height="30px" width="30px" src="/static/images/icons8-account-50.png" alt="" id="acc"></a>
+                            <!-- {% endif %} -->
+                        </div> 
+                    </div>
+                </div>
+            </div>
+            <div class="row" style="height: 100%;justify-content: center;align-items: center;">
+                <div class="col-md-10 p-4">
+                    <!-- Top Navigation -->
+                    <div class="row mb-4">
+                        <div class="col-md-3">
+                            <select class="form-select card" id="storeSelect">
+                                <option selected>Store</option>
+                                <option value="Product" id="vis">Product / Catagory</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <select class="form-select card" id="categorySelect" style="display: none;">
+                                <option selected>Select Category</option>
+                                <option>Category 1</option>
+                                <option>Category 2</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <select class="form-select card" id="productSelect" style="display: none;">
+                                <option selected>Select Product</option>
+                                <option>Product 1</option>
+                                <option>Product 2</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3" id="sbutton" style="display: none;">
+                            <button class="btn-21"><span>Search</span></button>
+                            <!-- <input type="search" class="form-control card" placeholder="Search..."> -->
+                        </div>
+                    </div>
+        
+                    <!-- Graphs and Tables Section -->
+                    <div class="row">
+                        <div class="col-md-7">
+                            <div class="graph-container card" style="width: auto;">
+                                <h5>Sales Trend</h5>
+                                <div class="chart-wrapper" style="width: 100%; max-width: 1000px; height: 300px;">
+                                    <canvas id="salesChart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-5">
+                            <div class="graph-container card">
+                                <h5>Stock Status</h5>
+                                <table class="table table-sm stock-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Product</th>
+                                            <th>Current Stock</th>
+                                            <th>Needed</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Product 1</td>
+                                            <td>150</td>
+                                            <td>200</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Product 2</td>
+                                            <td>80</td>
+                                            <td>100</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Product 3</td>
+                                            <td>200</td>
+                                            <td>150</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+        
+                    <!-- Revenue Section -->
+                    <div class="row mt-4">
+                        <div class="col-md-4">
+                            <div class="graph-container card">
+                                <h5>Revenue Distribution</h5>
+                                <div class="chart-wrapper" style="margin: 10px;height: auto;width: auto;">
+                                    <div id="myChart" style="overflow: hidden;"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="graph-container card">
+                                <h5>Profit Analysis</h5>
+                                <div class="chart-wrapper" style="width: 100%;">
+                                    <canvas id="profitChart" style="width: 100%;"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+        
+                    <!-- Predictions Section -->
+                    <div class="row mt-4">
+                        <div class="col-12">
+                            <div class="graph-container">
+                                <h5>Next Month Predictions</h5>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <h6>Expected Revenue</h6>
+                                                <h3>$24,500</h3>
+                                                <small class="text-success">+15% from current month</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <h6>Expected Expenses</h6>
+                                                <h3>$18,300</h3>
+                                                <small class="text-danger">+5% from current month</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <h6>Predicted Profit</h6>
+                                                <h3>$6,200</h3>
+                                                <small class="text-success">+25% from current month</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <script src="https://www.gstatic.com/charts/loader.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+            <script>
+                const xValues = [100,200,300,400,500,600,700,800,900,1000];
+
+new Chart("salesChart", {
+  type: "line",
+  data: {
+    labels: xValues,
+    datasets: [{
+      data: [860,1140,1060,1060,1070,1110,1330,2210,7830,2478],
+      borderColor: "red",
+      fill: false
+    },{
+      data: [1600,1700,1700,1900,2000,2700,4000,5000,6000,7000],
+      borderColor: "green",
+      fill: false
+    },{
+      data: [300,700,2000,5000,6000,4000,2000,1000,200,100],
+      borderColor: "blue",
+      fill: false
+    }]
+  },
+  options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      legend: {display: false},
+    }
+});
+google.charts.load('current', {'packages':['corechart']});
+google.charts.setOnLoadCallback(drawChart);
+
+function drawChart() {
+
+// Set Data
+const data = google.visualization.arrayToDataTable([
+  ['Contry', 'Mhl'],
+  ['Italy',54.8],
+  ['France',48.6],
+  ['Spain',44.4],
+  ['USA',23.9],
+  ['Argentina',14.5]
+]);
+
+// Set Options
+const options = {
+  title:'World Wide Wine Production',
+  is3D:true,
+  backgroundColor: 'transparent',
+//   width: 489,
+//   height: 300,
+  padding: 20
+};
+
+// Draw
+const chart = new google.visualization.PieChart(document.getElementById('myChart'));
+chart.draw(data, options);
+
+};
+// Profit Chart
+const profitChart = new Chart(document.getElementById('profitChart'), {
+    type: 'bar',
+    data: {
+        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun','jul','Aug','Sep','Oct','Nov','Dec'],
+        datasets: [{
+            label: 'Revenue',
+            data: [65, 59, 80, 81, 56, 55, 87, 23, 48, 10, 38,92],
+            backgroundColor: '#4CAF50'
+        }, {
+            label: 'Expenses',
+            data: [45, 49, 60, 71, 46, 45, 47, 83, 29, 34,86,45],
+            backgroundColor: '#F44336'
+        }, {
+            label: 'Profit',
+            data: [56, 69, 80, 51, 16, 65,56,25,85,45,35,75],
+            backgroundColor: '#2196F3'
+        }]
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    }
+});
+
+// Add event listeners for select elements
+document.getElementById('storeSelect').addEventListener('change', updateCharts);
+document.getElementById('categorySelect').addEventListener('change', updateCharts);
+document.getElementById('productSelect').addEventListener('change', updateCharts);
+
+function updateCharts() {
+    // This function would typically fetch new data and update the charts
+    // For demonstration, we'll just log the selected values
+    console.log('Store:', document.getElementById('storeSelect').value);
+    console.log('Category:', document.getElementById('categorySelect').value);
+    console.log('Product:', document.getElementById('productSelect').value);
+}
+
+
+//Show options for category and product
+
+document.getElementById("storeSelect").addEventListener("change", function () {
+    if (this.value === "Product") {
+        document.getElementById("categorySelect").style.display = "inline-block";
+        document.getElementById("productSelect").style.display = "inline-block";
+        document.getElementById("sbutton").style.display = "inline-block";
+    } else {
+        document.getElementById("categorySelect").style.display = "none";
+        document.getElementById("productSelect").style.display = "none";
+        document.getElementById("sbutton").style.display = "none";
+    }
+});
+            </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+        crossorigin="anonymous"></script>
+    <script src="/static/js/dashboard.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<!-- <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> -->
+</body>
+</html>

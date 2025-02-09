@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="shortcut icon" type="x-icon" href="static/images/New_Template-Photoroom__2_-removebg-preview.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transactions</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .container { margin-top: 20px; }
+        .btn-group-toggle .btn { border-radius: 0; }
+        .table { background-color: #fff; }
+        .btn.active { background-color: #007bff; color: white; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h3>Orders</h3>
+    <div class="d-flex justify-content-between">
+        <div class="btn-group btn-group-toggle" data-toggle="buttons">
+            <label class="btn btn-outline-primary active" id="buyBtn" onclick="filterOrders('order')">
+                <input type="radio" name="options" autocomplete="off" checked> Order
+            </label>
+            <label class="btn btn-outline-primary" id="saleBtn" onclick="filterOrders('sale')">
+                <input type="radio" name="options" autocomplete="off"> Sale
+            </label>
+        </div>
+        <button class="btn btn-secondary" onclick="exportToExcel()">Import to Excel</button>
+    </div>
+
+    <table class="table table-bordered mt-3">
+        <thead>
+            <tr>
+                <th>Bill Number</th>
+                <th>Date</th>
+                <th>customer name</th>
+                <th>Price</th>
+                <th>payment method</th>
+                <th>Type</th>
+            </tr>
+        </thead>
+        <tbody id="ordersTable">
+            <!-- Data will be injected here -->
+            {% for transaction in transactions %}
+            <tr>
+                <td>{{ transaction.bill_number }}</td>
+                <!-- <td>{{ transaction.last_updated }}</td> -->
+                <td>{{ transaction.last_updated.strftime('%Y-%m-%d %H:%M:%S') if transaction.last_updated else transaction.transaction_date }}</td>    
+                <td>{{ transaction.customer_name }}</td>
+                <td>{{ transaction.total_selling_price }}</td>
+                <td>{{ transaction.payment_method }}</td>               
+                <td>{{ transaction.type }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<script>
+    function filterOrders(type) {
+        // Send the request to fetch the filtered data
+        window.location.href = `/transactions?type=${type}`;
+    }
+
+    function exportToExcel() {
+        // Implement your export functionality here
+    }
+</script>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,324 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+::after,
+::before {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+:root{
+    --50: #f2f8fd;
+    --100: #e4eefa;
+    --200: #c2ddf5;
+    --300: #8dc1ec;
+    --400: #50a2e0;
+    --500: #2a87cd;
+    --600: #1b6aae;
+    --700: #17548d;
+    --800: #174875;
+    --900: #183e62;
+    --950: #0e2238;
+    --whiteColor:white;
+    --blackColor:black;
+    --grayColor:gray;
+}
+@font-face {
+    font-family: 'digitalll';
+    src: url(/static/fonts/digital.ttf);
+}
+::-webkit-scrollbar {
+    width: 15px;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background-color: var(--800);
+    border-radius: 50px;
+    border: 2px solid #c2ddf5;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background-color: #c2ddf5;
+  }
+#bg{
+    background-color:#c2ddf5 ;
+}
+a {
+    text-decoration: none;
+}
+
+li {
+    list-style: none;
+}
+
+h1 {
+    font-weight: 600;
+    font-size: 1.5rem;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+}
+
+.wrapper {
+    display: flex;
+}
+
+.main {
+    min-height: 100vh;
+    width: 100%;
+    overflow: hidden;
+    transition: margin-left 0.35s ease; /* Smooth transition for main content */
+    background-color: #fafbfe;
+    margin-left: 70px;
+}
+#Navbar{
+    height: 8vh;
+    width: 100%;
+    z-index: 999;
+    background-color: var(--200);
+}
+#sidebar {
+    height: 100vh;
+    position: fixed;
+    width: 70px; /* Collapsed width */
+    min-width: 70px;
+    z-index: 1000;
+    background-color: #0e2238;
+    display: flex;
+    flex-direction: column;
+    transition: width 0.35s ease; /* Smooth transition for sidebar width */
+    overflow: hidden; /* Hide any overflowing content */
+}
+
+#sidebar:hover {
+    width: 260px; /* Expanded width on hover */
+}
+#sidebar:hover~.main {
+    margin-left: 260px;
+}
+
+.toggle-btn {
+    background-color: transparent;
+    cursor: pointer;
+    border: 0;
+    padding: 1rem 1.5rem;
+}
+
+.toggle-btn i {
+    font-size: 1.5rem;
+    color: #FFF;
+}
+
+.sidebar-logo {
+    margin: auto 0;
+    display: flex; /* Ensure proper alignment */
+    align-items: center; /* Center logos vertically */
+}
+
+.sidebar-logo a {
+    color: #FFF;
+    font-size: 1.15rem;
+    font-weight: 600;
+}
+
+.sidebar-nav {
+    padding: 2rem 0;
+    flex: 1 1 auto;
+}
+
+a.sidebar-link {
+    padding: .625rem 1.625rem; /* Original padding */
+    color: #FFF;
+    display: flex; /* Changed to flex to align items */
+    align-items: center; /* Center items vertically */
+    font-size: rem;
+    white-space: nowrap;
+    border-left: 5px solid transparent;
+    transition: background-color 0.3s ease; /* Smooth transition */
+}
+
+#sidebar:not(.expand) a.sidebar-link {
+    padding-left: 15px; /* Adjust padding when collapsed */
+}
+
+#sidebar.expand a.sidebar-link {
+    padding-left: 7px; /* Additional left padding when expanded */
+    align-items: center;
+}
+
+.sidebar-link:hover {
+    background-color: rgba(255, 255, 255, .075);
+    border-left: 3px solid #3b7ddd;
+}
+
+.sidebar-link i {
+    font-size: 1.15rem; /* Increased icon size */
+    margin-right: .75rem;
+}
+
+.sidebar-item {
+    position: relative;
+}
+
+#border {
+    border-radius: 8px;
+    background-color: #f2f8fd;
+}
+
+p {
+    color: black;
+    font-size: 1.5rem;
+}
+
+#btnn {
+    border: 2px solid #174875;
+    color: #174875;
+    border-radius: 8px; /* Added border radius */
+    transition: all 0.3s ease; /* Smooth transition */
+}
+
+#btnn:hover {
+    background-color: #174875;
+    color: white;
+}
+.sidebar-footer a {
+    display: flex;
+    align-items: center;
+    color: #FFF;
+}
+
+/* Transition effect on hover */
+#sidebar {
+    transition: width 0.3s ease; /* Adjust the duration for smoother effect */
+}
+
+@media (max-width: 768px) {
+    #sidebar {
+        display: none; /* Hide sidebar on smaller screens */
+    }
+}
+/* Style for the notification icon and dropdown positioning */
+/* Position the dropdown on the left side */
+.dropleft .dropdown-menu {
+    left: auto;
+    right: 100%; /* Position the dropdown to the left */
+    top: 0; /* Align it with the icon */
+    transform: translateX(-10px); /* Adjust as needed for alignment */
+    min-width: 200px; /* Adjust width if necessary */
+}
+
+/* Additional styling */
+.notification-icon {
+    cursor: pointer;
+}
+
+.dropdown-menu a {
+    color: #333;
+    text-decoration: none;
+}
+
+.dropdown-menu .dropdown-header {
+    font-weight: bold;
+}
+
+.dropdown-menu .dropdown-item:hover {
+    background-color: #f0f0f0;
+}
+#bg{
+    background-color:#c2ddf5 ;
+}
+.SCont{
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+    border-radius: 15px;
+    background-color: #f2f8fd;
+}
+        .LCont{
+    height: 60%;
+    width: 92%;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+    border-radius: 15px;
+    background-color: #f2f8fd;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px;
+    padding: 20px;
+    margin-right: 2px;
+}
+#heding-cont{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#num{
+    font-weight: bolder;
+}
+.duration{
+    border: 0.2px solid black;
+    border-radius:5px;
+    width: auto;
+    background-color: transparent;
+    color: black;
+    padding: 5px;
+  }
+  #clock{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: auto;
+    color: black;
+    font-family: 'digitalll';
+    font-size: 1.25rem;
+    border-radius: 8px;
+    border: 0.5px solid var(--700);
+background: linear-gradient(225deg, #afc7dd, #d0ecff);
+box-shadow:  -6px 6px 15px #a9c0d5,
+             6px -6px 15px #dbfaff;
+}
+#productSuggestions{
+    position: absolute;
+    z-index: 999;
+}
+.btn-22 {
+    background-color: var(--700); /* Green background */
+    color: white; /* White text */
+    border: none; /* Remove default border */
+    padding: 6px 12px;
+    font-size: 16px; /* Font size */
+    font-weight: bold; /* Bold text */
+    border-radius: 8px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.06); /* Subtle shadow */
+  }
+  
+  .btn-22:hover {
+    background-color: var(--800); /* Darker green on hover */
+    transform: scale(1.1); /* Slightly enlarge on hover */
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15), 0 2px 5px rgba(0, 0, 0, 0.1); /* Enhanced shadow on hover */
+  }
+  
+  .btn-22:active {
+    transform: scale(0.95); /* Slightly shrink on click */
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2), 0 1px 3px rgba(0, 0, 0, 0.15); /* Reduced shadow on click */
+  }
+  
+  /* Optional animated pulse effect */
+  @keyframes pulse {
+    0%, 100% {
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.06);
+    }
+    50% {
+      box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15), 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+  }
+  
+  .btn-22:focus {
+    outline: none; /* Remove default focus outline */
+    animation: pulse 1s infinite; /* Add pulse animation on focus */
+  }
+  #acc{
+    border-radius: 50%;
+    padding: unset;
+  }

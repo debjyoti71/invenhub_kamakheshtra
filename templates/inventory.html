@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="shortcut icon" type="x-icon" href="static/images/New_Template-Photoroom__2_-removebg-preview.png">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventory</title>
+    <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <link rel="stylesheet" href="/static/css/dashboard.css">
+</head>
+
+<body>
+    <style>
+    .main-content {
+      padding: 20px;
+    }
+    .card-header {
+      font-weight: bold;
+    }
+    .card{
+        box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+    }
+    .badge {
+      font-size: 0.9em;
+    }
+    .table th, .table td {
+      vertical-align: middle;
+    }
+    #btnnn{
+        color: white;
+        background-color: #174875;
+    }
+    #btnnn:hover{
+        background-color: #3f79d1;
+    }
+    #btnnn:active{
+        background-color: #3566c0;
+    }
+    .btn-delete {
+        color: #3f79d1;
+    }
+    .btn-delete:hover {
+        color: #174875;
+    }
+    .wrap-delete * {
+  margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+.button-delete {
+    -webkit-touch-callout: none;
+      -webkit-user-select: none;
+       -khtml-user-select: none;
+         -moz-user-select: none;
+          -ms-user-select: none;
+              user-select: none;
+          -webkit-tap-highlight-color: 
+transparent;
+  }
+  
+  .wrap-delete button {
+      width: 110px;
+      height: 35px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      background: 
+red;
+      border: none;
+      border-radius: 4px;
+      box-shadow: 1px 1px 3px 
+rgba(0,0,0,0.15);
+      background: 
+#e62222;
+  }
+  
+  .wrap-delete button, .wrap-delete button span {
+      transition: 200ms;
+  }
+  
+  .wrap-delete button .text {
+      transform: translateX(26px);
+      color: 
+white;
+      font-weight: bold;
+      font-size: 12px;
+  }
+  
+  .wrap-delete button .icon {
+      position: absolute;
+      border-left: 1px solid 
+#c41b1b;
+      transform: translateX(80px);
+      height: 28px;
+      width: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+  }
+  
+  .wrap-delete button svg {
+      width: 12px;
+      fill: 
+#eee;
+  }
+  
+  .wrap-delete button:hover {
+      background: 
+#ff3636;
+  }
+  
+  .wrap-delete button:hover .text {
+      color: 
+transparent;
+  }
+  
+  .wrap-delete button:hover .icon {
+      width: 110px;
+      border-left: none;
+      transform: translateX(0);
+  }
+  
+  .wrap-delete button:focus {
+      outline: none;
+  }
+    </style>
+    <div class="wrapper">
+        <aside id="sidebar">
+            <div class="d-flex">
+                <button class="toggle-btn" type="button">
+                    <i class="lni lni-grid-alt"></i>
+                </button>
+                <div class="sidebar-logo">
+                    <a href="#">InvenHub</a>
+                </div>
+            </div>
+            <ul class="sidebar-nav">
+                <li class="sidebar-item">
+                    <a href="/dashboard" class="sidebar-link">
+                        <i><img height="25px" width="25px" src="/static/images/icons8-home (2).svg" alt=""></i>
+                        <span style="margin-left: 20px;">Dashboard</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a href="/inventory" class="sidebar-link">
+                        <i><img height="25px" width="25px" src="/static/images/icons8-inventory-50.png" alt="warehouse-1"/></i>
+                        <span style="margin-left: 20px;">Inventory</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a href="#" class="sidebar-link">
+                        <i><img height="25px" width="25px" src="/static/images/icons8-graph-48.png" alt="warehouse-1"/></i>
+                        <span style="margin-left: 20px;">Reports</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a href="/transactions" class="sidebar-link">
+                        <i><img height="25px" width="25px" src="/static/images/icons8-order-50.png" alt="warehouse-1"/></i>
+                        <span style="margin-left: 20px;">Transactions</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a href="/new_sale" class="sidebar-link">
+                        <i><img height="25px" width="25px" src="/static/images/icons8-plus.svg" alt="warehouse-1"/></i>
+                        <span style="margin-left: 20px;">New Sale</span>
+                    </a>
+                </li>
+            </ul>
+            <div class="sidebar-footer">
+                <a href="/settings" class="sidebar-link">
+                    <i><img height="25px" width="25px" src="/static/images/icons8-settings.svg" alt="warehouse-1"/></i>
+                    <span style="margin-left: 20px;">Settings</span>
+                </a>
+            </div>
+            <div class="sidebar-footer">
+                <a href="{{ url_for('logout') }}" class="sidebar-link">
+                    <i><img height="25px" width="25px" src="/static/images/icons8-logout-50 (1).png" alt="warehouse-1"/></i>
+                    <span style="margin-left: 20px;">Logout</span>
+                </a>
+            </div>
+        </aside>
+        <div class="main">
+            <div class="row justify-content-center align-items-center" style="height: 8vh; background-color: #c2ddf5;">
+                <div class="col-10">
+                    <div class="row justify-content-center align-items-center">
+                        <div class="col"></div>
+                        <div class="col-5" style="height: auto;">
+                            <input class="form-control" id="searchInput" type="search" placeholder="Search for categories or products..." autocomplete="off" aria-label="Search">
+                            <ul id="productSuggestions" class="list-group" style="display: none;"></ul> 
+                        </div>
+                        <div class="col-1">
+                            <button class="btn" id="btnn" type="submit">Search</button>
+                        </div>
+                        <input type="hidden" id="storeInput" value="{{ store_id }}">
+                        <div class="col-5">
+                            <div class="row">
+                                <div class="col"></div>
+                                <div class="col-6" id="clock" style="height: 100%;"></div>
+                                <div class="col"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col"></div>
+                <div class="col"></div>
+                <div class="col"></div>
+                <div class="col d-flex justify-content-center align-items-center" style="height: 100%;">
+                    <div class="dropdown dropleft">
+                        <a class="notification-icon position-relative" id="notificationDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i><img height="30px" width="30px" src="/static/images/icons8-notification (3).svg" alt=""></i>
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="notificationDropdown">
+                            <li class="dropdown-header">Notifications</li>
+                            <li><a class="dropdown-item" href="#">New message received</a></li>
+                            <li><a class="dropdown-item" href="#">Server alert</a></li>
+                            <li><a class="dropdown-item" href="#">Update available</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item text-center" href="#">View all</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col">
+                    {% if user.profile_picture %}
+                        <a href="/account"><img height="30px" width="30px" src="{{ url_for('profile_picture', user_id=user.id) }}" alt="" id="acc"></a>
+                    {% else %}
+                        <a href="/account"><img height="30px" width="30px" src="/static/images/icons8-account-50.png" alt="" id="acc"></a>
+                    {% endif %}
+                </div> 
+                <div class="col"></div>
+            </div>
+            <div class="main-content" style="height: 100%; background-color: #c2ddf5;">
+                <div class="container-fluid">
+                  <div class="row mb-4">
+                    <div class="col-lg-3">
+                      <div class="card">
+                        <div class="card-body text-center">
+                          <h5 class="card-header">Categories</h5>
+                          <p>{{ categories|length }}</p> 
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-lg-3">
+                      <div class="card">
+                        <div class="card-body text-center">
+                          <h5 class="card-header">Total Products</h5>
+                          <p>{{ total_products }}</p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-lg-3">
+                      <div class="card">
+                        <div class="card-body text-center">
+                          <h5 class="card-header">Top Selling</h5>
+                          <p>{{ top_selling }}</p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-lg-3">
+                      <div class="card">
+                        <div class="card-body text-center">
+                          <h5 class="card-header">Low Stocks</h5>
+                          <p>{{ low_stock }}</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+            
+                  <div class="card">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <h5>Products</h5>
+                        <div>
+                            <button class="btn my-3" id="btnnn" onclick="window.location.href='/all_deleted_products'" style="margin-right: 30px;">Deleted Products</button>
+                            <button class="btn my-3" id="btnnn" onclick="showAddProductPage()">Add New Product</button>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Product id</th>
+                                    <th>Category</th>
+                                    <th>Product Name</th>
+                                    <th>Buying Price</th>
+                                    <th>Quantity</th>
+                                    <th>Selling Price</th>
+                                    <th>Delete product</th>
+                                    <th style="display: flex; justify-content: center;align-items: center;">Print Barcode</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% if products %}
+                                    {% for product in products %}
+                                        <tr>
+                                            <td>{{ product.P_unique_id }}</td>
+                                            <td>{{ product.category.category_name }}</td>
+                                            <td>{{ product.name }}</td>
+                                            <td>{{ product.cost_price }}</td>
+                                            <td>{{ product.stock }}</td>
+                                            <td>{{ product.selling_price }}</td>
+                                            <td>
+                                                <form action="{{ url_for('delete_product', product_id=product.P_unique_id) }}" method="POST" class="d-inline">
+                                                    <div class="wrap-delete"><button class="button-delete" type="submit" onclick="return confirm('Are you sure you want to delete this Product?')"><span class='text'>Delete</span><span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M24 20.188l-8.315-8.209 8.2-8.282-3.697-3.697-8.212 8.318-8.31-8.203-3.666 3.666 8.321 8.24-8.206 8.313 3.666 3.666 8.237-8.318 8.285 8.203z"/></svg></span></button></div>
+                                                    <!-- <button type="submit" class="btn btn-link btn-delete p-0" onclick="return confirm('Are you sure you want to delete this Product?')">
+                                                        <i class="fas fa-trash-alt"></i>
+                                                    </button> -->
+                                                </form>
+                                            </td>
+                                            <td>
+                                                <form action="{{ url_for('print_product_barcode', product_id=product.P_unique_id)}}" method="POST" class="d-inline">
+                                                    <div class="row">
+                                                        <div class="col" style="display: flex; justify-content: center;align-items: center;">
+                                                            <input type="number" class="form-control mt-2" id="barcode_quantity" name="barcode_quantity" min="1" style="width: 80px;">
+                                                        </div>
+                                                        <div class="col" style="display: flex; justify-content: center;align-items: center;">
+                                                            <button class="btn-22" type="submit"><span>Print</span></button>
+                                                        </div>
+                                                    </div>
+                                                    <!-- <img alt='Barcode Generator TEC-IT' src='https://barcode.tec-it.com/barcode.ashx?data={{product.P_unique_id}}&code=Code128&translate-esc=on'/> -->
+                                                </form>
+                                            </td>                                    
+                                        </tr>
+                                    {% endfor %}
+                                {% else %}
+                                        <td colspan="5" class="no-products">No products available. Add a new product.</td>
+                                    </tr>
+                                {% endif %}
+                            </tbody>
+                        </table>  
+
+                        <div class="d-flex justify-content-between">
+                            <button class="btn btn-outline-secondary btn-sm">Previous</button>
+                            <button class="btn btn-outline-secondary btn-sm">Next</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+            crossorigin="anonymous"></script>
+        <script src="/static/js/dashboard.js"></script>
+        <script src = "/static/js/search_bar.js"></script>
+        <script>
+            function showAddProductPage() {
+                window.location.href = '/new_product';
+            }
+        </script>

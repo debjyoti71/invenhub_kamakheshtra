@@ -1,0 +1,56 @@
+# Ignore environment variables and configuration files with sensitive data
+.env
+
+# Ignore compiled Python files
+*.pyc
+__pycache__/
+
+# Ignore virtual environments
+myenv/
+venv/
+
+# Ignore temporary files and logs
+*.log
+*.tmp
+*.swp
+tempCodeRunnerFile
+
+# Ignore database migrations and instance files
+migrations/
+instance/
+db_changes.py
+req.py
+cart_adding.py
+copy_db.py
+tempCodeRunnerFile.py
+trend_data.csv
+req_test.py
+.cache.sqlite
+forcastvalue_add.py
+forcast_class_test1.py
+
+
+# Ignore specific data files (e.g., dataset or user data)
+static/updated_kalimati_tarkari_dataset_modified.csv
+static/user_info.csv
+static/Yearly_Sales_Data.csv
+
+# Ignore cache and build files
+*.cache
+*.bak
+*.backup
+*.old
+*.out
+
+# Ignore IDE and editor-specific files
+.vscode/
+.idea/
+*.iml
+
+# Ignore system-specific files
+.DS_Store
+Thumbs.db
+
+# Ignore any other unnecessary temporary or configuration files
+*.~lock.*
+*.ipynb_checkpoints

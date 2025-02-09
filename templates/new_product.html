@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="shortcut icon" type="x-icon" href="static/images/New_Template-Photoroom__2_-removebg-preview.png">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add new product</title>
+    <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <link rel="stylesheet" href="/static/css/dashboard.css">
+</head>
+
+<body>
+    <style>
+    .main-content {
+      padding: 20px;
+    }
+    .card-header {
+      font-weight: bold;
+    }
+    .badge {
+      font-size: 0.9em;
+    }
+    .table th, .table td {
+      vertical-align: middle;
+    }
+    #btnnn{
+        background-color: #5394de;
+    }
+    #btnnn:hover{
+        background-color: #3f79d1;
+    }
+    #btnnn:active{
+        background-color: #3566c0;
+    }
+    </style>
+    <div class="wrapper">
+        <aside id="sidebar">
+            <div class="d-flex">
+                <button class="toggle-btn" type="button">
+                    <i class="lni lni-grid-alt"></i>
+                </button>
+                <div class="sidebar-logo">
+                    <a href="#">InvenHub</a>
+                </div>
+            </div>
+            <ul class="sidebar-nav">
+                <li class="sidebar-item">
+                    <a href="/dashboard" class="sidebar-link">
+                        <i><img height="25px" width="25px" src="/static/images/icons8-home (2).svg" alt=""></i>
+                        <span style="margin-left: 20px;">Dashboard</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a href="/inventory" class="sidebar-link">
+                        <i><img height="25px" width="25px" src="/static/images/icons8-inventory-50.png" alt="warehouse-1"/></i>
+                        <span style="margin-left: 20px;">Inventory</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a href="#" class="sidebar-link">
+                        <i><img height="25px" width="25px" src="/static/images/icons8-graph-48.png" alt="warehouse-1"/></i>
+                        <span style="margin-left: 20px;">Reports</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a href="/transactions" class="sidebar-link">
+                        <i><img height="25px" width="25px" src="/static/images/icons8-order-50.png" alt="warehouse-1"/></i>
+                        <span style="margin-left: 20px;">Transactions</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a href="/new_sale" class="sidebar-link">
+                        <i><img height="25px" width="25px" src="/static/images/icons8-plus.svg" alt="warehouse-1"/></i>
+                        <span style="margin-left: 20px;">New Sale</span>
+                    </a>
+                </li>
+            </ul>
+            <div class="sidebar-footer">
+                <a href="#" class="sidebar-link">
+                    <i><img height="25px" width="25px" src="/static/images/icons8-settings.svg" alt="warehouse-1"/></i>
+                    <span style="margin-left: 20px;">Settings</span>
+                </a>
+            </div>
+            <div class="sidebar-footer">
+                <a href="{{ url_for('logout') }}" class="sidebar-link">
+                    <i><img height="25px" width="25px" src="/static/images/icons8-logout-50 (1).png" alt="warehouse-1"/></i>
+                    <span style="margin-left: 20px;">Logout</span>
+                </a>
+            </div>
+        </aside>
+        <div class="main">
+            <div class="row justify-content-center align-items-center" style="height: 8vh; background-color: #c2ddf5;">
+                <div class="col-10">
+                    <div class="row justify-content-center align-items-center">
+                        <div class="col"></div>
+                        <div class="col-5" style="height: auto;">
+                            <input class="form-control" type="search" placeholder="Search" aria-label="Search">
+                        </div>
+                        <div class="col-1"><button class="btn" id="btnn" type="submit">Search</button></div>
+                        <div class="col-5">
+                            <div class="row">
+                                <div class="col"></div>
+                                <div class="col-6" id="clock" style="height: 100%;"></div>
+                                <div class="col"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col"></div>
+                <div class="col"></div>
+                <div class="col"></div>
+                <div class="col d-flex justify-content-center align-items-center" style="height: 100%;">
+                    <div class="dropdown dropleft">
+                        <a class="notification-icon position-relative" id="notificationDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i><img height="30px" width="30px" src="/static/images/icons8-notification (3).svg" alt=""></i>
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="notificationDropdown">
+                            <li class="dropdown-header">Notifications</li>
+                            <li><a class="dropdown-item" href="#">New message received</a></li>
+                            <li><a class="dropdown-item" href="#">Server alert</a></li>
+                            <li><a class="dropdown-item" href="#">Update available</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item text-center" href="#">View all</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col">
+                    {% if user.profile_picture %}
+                        <a href="/account"><img height="30px" width="30px" src="{{ url_for('profile_picture', user_id=user.id) }}" alt="" id="acc"></a>
+                    {% else %}
+                        <a href="/account"><img height="30px" width="30px" src="/static/images/icons8-account-50.png" alt="" id="acc"></a>
+                    {% endif %}
+                </div> 
+                <div class="col"></div>
+            </div>
+            <div class="row" style="height: 100%; background-color: #c2ddf5;">
+                <form id="addProductForm" action="/new_product" method="POST" class="d-flex flex-wrap w-100">
+                    <!-- Left Column: Product Details -->
+                    <div class="col-lg-6">
+                        <div class="main-content p-4">
+                            <h3>Add New Product</h3>
+                            <div class="mb-3">
+                                <label for="productCategory" class="form-label">Category</label>
+                                <input type="text" class="form-control" name="productCategory" id="productCategory" required autocomplete="off">
+                                <ul id="categorySuggestions" class="list-group mt-2" style="display: none;"></ul>
+                            </div>
+                            <div class="mb-3">
+                                <label for="productName" class="form-label">Product Name</label>
+                                <input type="text" class="form-control" name="productName" id="productName" required autocomplete="off">
+                                <ul id="productSuggestions" class="list-group mt-2" style="display: none;"></ul>
+                            </div>
+                            <div class="mb-3">
+                                <label for="productPrice" class="form-label">Cost Price</label>
+                                <input type="number" class="form-control" name="productPrice" id="productPrice" step="0.01" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="productQuantity" class="form-label">Quantity</label>
+                                <input type="number" class="form-control" name="productQuantity" min="1" id="productQuantity" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="productSellingPrice" class="form-label">Selling Price</label>
+                                <input type="number" class="form-control" name="productSellingPrice" id="productSellingPrice" step="0.01" required>
+                            </div>
+            
+                            <!-- Hidden fields for additional product details -->
+                            <input type="hidden" id="productId" name="productId">
+                            <input type="hidden" id="productManufactureDate" name="productManufactureDate">
+                            <input type="hidden" id="productExpiryDate" name="productExpiryDate">
+            
+                            <!-- Form Buttons -->
+                            <div class="d-flex gap-3">
+                                <button type="submit" class="btn btn-primary">Add Product</button>
+                                <button type="button" class="btn btn-secondary" onclick="goBack()">Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+            
+                    <!-- Right Column: Barcode and Illustration -->
+                    <div class="col-lg-6 d-flex flex-column align-items-center justify-content-center">
+                        <div class="mb-4 w-100">
+                            <label for="want_barcode" class="form-label">Want Barcode</label>
+                            <select class="form-select" id="want_barcode" name="want_barcode" aria-label="Do you want a barcode?" style="width: 200px;">
+                                <option selected>NO</option>
+                                <option>Yes</option>
+                            </select>
+                            <input type="number" class="form-control mt-2" id="barcode_quantity" name="barcode_quantity" min="1" style="width: 80px;" disabled>
+                        </div>
+                        <img src="/static/images/undraw_add_tasks_re_s5yj.svg" alt="Illustration" class="img-fluid" style="height: 60%; width: 90%;">
+                    </div>
+                </form>
+            </div>            
+            <script>
+                // Function to fetch category suggestions based on user input
+                function fetchCategorySuggestions(query) {
+                    const storeId = "{{ store_id }}"; // Store ID passed from Flask
+            
+                    if (query.length < 2) {
+                        hideCategorySuggestions(); // Hide suggestions if query length is less than 2
+                        return;
+                    }
+            
+                    // Fetch category suggestions from the server
+                    fetch(`/suggest-categories?query=${query}&store_id=${storeId}`)
+                        .then(response => response.json())
+                        .then(data => displayCategorySuggestions(data.suggestions))
+                        .catch(error => console.error('Error fetching category suggestions:', error));
+                }
+            
+                // Function to display fetched category suggestions
+                function displayCategorySuggestions(suggestions) {
+                    const suggestionsList = document.getElementById('categorySuggestions');
+                    suggestionsList.innerHTML = ''; // Clear previous suggestions
+                    suggestionsList.style.display = 'block'; // Show suggestions list
+            
+                    if (suggestions.length > 0) {
+                        suggestions.forEach(category => {
+                            const item = document.createElement('li');
+                            item.className = 'list-group-item suggestion-item';
+                            item.textContent = category.name; // Display category name
+            
+                            // Optionally, display more info about the category, like product count
+                            // item.textContent = `${category.name} - ${category.product_count} products`; // Example of adding more info
+            
+                            item.onclick = () => selectCategory(category); // Set click handler for selecting a category
+                            suggestionsList.appendChild(item);
+                        });
+                    } else {
+                        const noResultsItem = document.createElement('li');
+                        noResultsItem.className = 'list-group-item';
+                        noResultsItem.textContent = 'No categories found';
+                        suggestionsList.appendChild(noResultsItem);
+                    }
+                }
+            
+                // Function to hide the suggestions list
+                function hideCategorySuggestions() {
+                    const suggestionsList = document.getElementById('categorySuggestions');
+                    suggestionsList.style.display = 'none';
+                }
+            
+                // Handle category selection from the suggestion list
+                function selectCategory(category) {
+                    document.getElementById('productCategory').value = category.name; // Set input field to selected category
+                    hideCategorySuggestions(); // Hide suggestions after selection
+                }
+            
+                // Listen for input events on the category input field
+                document.getElementById('productCategory').addEventListener('input', function() {
+                    const query = this.value.trim(); // Get the query from the input field
+                    fetchCategorySuggestions(query); // Fetch suggestions based on the query
+                });
+            </script>
+            
+            <script>
+                // Function to fetch product suggestions based on user input
+                function fetchProductSuggestions(query) {
+                    const storeId = "{{ store_id }}"; // Store ID passed from Flask
+            
+                    if (query.length < 2) {
+                        hideSuggestions(); // Hide suggestions if query length is less than 2
+                        return;
+                    }
+            
+                    // Fetch product suggestions from the server
+                    fetch(`/suggest-products?query=${query}&store_id=${storeId}`)
+                        .then(response => response.json())
+                        .then(data => displayProductSuggestions(data.suggestions))
+                        .catch(error => console.error('Error fetching product suggestions:', error));
+                }
+            
+                // Function to display fetched product suggestions
+                function displayProductSuggestions(suggestions) {
+                    const suggestionsList = document.getElementById('productSuggestions');
+                    suggestionsList.innerHTML = ''; // Clear previous suggestions
+                    suggestionsList.style.display = 'block'; // Show suggestions list
+            
+                    if (suggestions.length > 0) {
+                        suggestions.forEach(product => {
+                            const item = document.createElement('li');
+                            item.className = 'list-group-item suggestion-item';
+                            item.textContent = `${product.product_id} - ${product.name} - ${product.selling_price} (Stock: ${product.stock})`; // Display product details
+                            item.onclick = () => selectProduct(product); // Set click handler for selecting a product
+                            suggestionsList.appendChild(item);
+                        });
+                    } else {
+                        const noResultsItem = document.createElement('li');
+                        noResultsItem.className = 'list-group-item';
+                        noResultsItem.textContent = 'No products found';
+                        suggestionsList.appendChild(noResultsItem);
+                    }
+                }
+            
+                // Function to hide the suggestions list
+                function hideSuggestions() {
+                    const suggestionsList = document.getElementById('productSuggestions');
+                    suggestionsList.style.display = 'none';
+                }
+            
+                // Handle product selection from the suggestion list
+                function selectProduct(product) {
+                    // Set input fields to selected product's values
+                    document.getElementById('productName').value = product.name;
+                    document.getElementById('productPrice').value = product.cost_price; // Set cost price
+                    document.getElementById('productQuantity').value = 1; // Default quantity to 1
+                    document.getElementById('productSellingPrice').value = product.selling_price; // Set selling price
+                    // Set category ID and fetch category name
+                    const categoryId = product.catagory;
+                    document.getElementById('productCategory').value = ''; // Clear the category field initially
+
+                    // Fetch category name from the server or a predefined mapping
+                    fetch(`/get-category-name?category_id=${categoryId}`)
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data.category_name) {
+                                document.getElementById('productCategory').value = data.category_name; // Set category name
+                            } else {
+                                console.warn('No category name found for this ID.');
+                            }
+                        })
+                        .catch(error => console.error('Error fetching category name:', error));
+            
+                    // Display product-specific data
+                    document.getElementById('productId').value = product.product_id; // Set product ID
+                    document.getElementById('productManufactureDate').value = product.manufacture_date; // Set manufacture date
+                    document.getElementById('productExpiryDate').value = product.expiry_date; // Set expiry date
+            
+                    hideSuggestions(); // Hide suggestions after selection
+                }
+            
+                // Listen for input events on the product name input field
+                document.getElementById('productName').addEventListener('input', function() {
+                    const query = this.value.trim(); // Get the query from the input field
+                    fetchProductSuggestions(query); // Fetch suggestions based on the query
+                });
+                function goBack() {
+                    window.location.href = '/inventory';
+                }
+                document.getElementById('want_barcode').addEventListener('change', function () {
+                    const barcodeInput = document.getElementById('barcode_quantity');
+                    barcodeInput.disabled = this.value === 'NO';
+                    if (barcodeInput.disabled) {
+                        barcodeInput.value = ''; // Clear the input if disabled
+                    }
+                });
+            </script>
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+            crossorigin="anonymous"></script>
+        <script src="/static/js/dashboard.js"></script>
+        </body>
+        </html>
